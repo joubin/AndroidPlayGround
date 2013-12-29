@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.ClipboardManager;
@@ -28,11 +29,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends Activity {
-    private static final String YES_ACTION = "YES";
-    private static final String NO_ACTION = "NO";
-    private static final String MAYBE_ACTION = "MAYBE";
+
     private List<Car> myCars = new ArrayList<Car>();
     private NotificationManager notificationManager;
+    private static final String YES_ACTION = "android.intent.action.YES_ACTION";
+    private static final String NO_ACTION = "android.intent.action.NO_ACTION";
+    private static final String MAYBE_ACTION = "android.intent.action.MAYBE_ACTION";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,13 @@ public class MainActivity extends Activity {
         registerClickCallBack();
         notificationManager = (NotificationManager)
         getSystemService(NOTIFICATION_SERVICE);
+        IntentFilter inf = new IntentFilter();
+        NotificationReceiverActivity nm = new NotificationReceiverActivity();
+
+        inf.addAction(YES_ACTION);
+        inf.addAction(NO_ACTION);
+        inf.addAction(MAYBE_ACTION);
+        registerReceiver(nm, inf);
     }
 
     private void registerClickCallBack() {
@@ -89,18 +98,30 @@ public class MainActivity extends Activity {
 
                 //Yes intent
                 Intent yesReceive = new Intent();
+                Bundle yesBundle = new Bundle();
+                yesBundle.putString("1",clickedCar.getMake());
+                yesBundle.putString("2",clickedCar.getCondition());
+
+                yesReceive.putExtras(yesBundle);
                 yesReceive.setAction(YES_ACTION);
                 PendingIntent pendingIntentYes = PendingIntent.getBroadcast(MainActivity.this, 12345, yesReceive, PendingIntent.FLAG_UPDATE_CURRENT);
 //                mBuilder.addAction(R.drawable.calendar_v, "Yes", pendingIntentYes);
 
 //Maybe intent
                 Intent maybeReceive = new Intent();
+                Bundle maybeBundle = new Bundle();
+                maybeBundle.putString("2",clickedCar.getCondition());
+                Toast.makeText(getApplicationContext(), clickedCar.getCondition(), 0).show();
+                maybeReceive.putExtras(maybeBundle);
                 maybeReceive.setAction(MAYBE_ACTION);
                 PendingIntent pendingIntentMaybe = PendingIntent.getBroadcast(MainActivity.this, 12345, maybeReceive, PendingIntent.FLAG_UPDATE_CURRENT);
 //                mBuilder.addAction(R.drawable.calendar_question, "Partly", pendingIntentMaybe);
 
 //No intent
                 Intent noReceive = new Intent();
+                Bundle noBundle = new Bundle();
+                noBundle.putString("3","true");
+                noReceive.putExtras(noBundle);
                 noReceive.setAction(NO_ACTION);
                 PendingIntent pendingIntentNo = PendingIntent.getBroadcast(MainActivity.this, 12345, noReceive, PendingIntent.FLAG_UPDATE_CURRENT);
 //                mBuilder.addAction(R.drawable.calendar_x, "No", pendingIntentNo);
@@ -114,18 +135,16 @@ public class MainActivity extends Activity {
                         .setContentText("Subject")
                         .setSmallIcon(R.drawable.bullets)
 
-                        .addAction(R.drawable.m1911, "user", pendingIntentYes)
-                        .addAction(R.drawable.camera, "pass", pendingIntentNo)
-                        .addAction(R.drawable.telescope, "clear", pendingIntentMaybe)
-                        .setContentIntent(pendingIntentYes)
-                        .setAutoCancel(true)
+                        .addAction(R.drawable.user, "user", pendingIntentYes)
+                        .addAction(R.drawable.star3, "pass", pendingIntentNo)
+                        .addAction(R.drawable.history, "clear", pendingIntentMaybe)
                         .build();
 
 
                 NotificationManager notificationManager =
                         (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-                notificationManager.notify(0, n);
+                notificationManager.notify(12345, n);
 
 
 

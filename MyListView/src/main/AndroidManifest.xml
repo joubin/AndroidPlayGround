@@ -34,7 +34,10 @@
 
         <receiver android:name=".NotificationReceiverActivity" >
             <intent-filter>
-                <action android:name="android.intent" />
+                <action android:name="android.intent.action.YES_ACTION" />
+                <action android:name="android.intent.action.NO_ACTION" />
+                <action android:name="android.intent.action.MAYBE_ACTION" />
+
             </intent-filter>
         </receiver>
 
