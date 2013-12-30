@@ -2,6 +2,7 @@ package com.example.mylistview;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.Context;
@@ -32,20 +33,22 @@ public class NotificationReceiverActivity extends BroadcastReceiver {
 
 
 
+
         if(YES_ACTION.equals(action)) {
             clip = ClipData.newPlainText("lable", b.getString("1"));
-            Toast.makeText(context, b.getString("1"), 0).show();
+            Toast.makeText(context, "Doing yes action "+b.getString("1"), 0).show();
             clipboard.setPrimaryClip(clip);
 
         } else if(MAYBE_ACTION.equals(action)) {
-            clip = ClipData.newPlainText("lable", b.getString("3"));
-            Toast.makeText(context, b.getString("3"), 0).show();
+            clip = ClipData.newPlainText("lable", b.getString("2"));
+            Toast.makeText(context, "Doing maybe action "+b.getString("2"), 0).show();
+
             clipboard.setPrimaryClip(clip);
 
 
         } else if(NO_ACTION.equals(action)) {
-            clip = ClipData.newPlainText("lable", b.getString("2"));
-            Toast.makeText(context, b.getString("2"), 0).show();
+            clip = ClipData.newPlainText("lable", b.getString("3"));
+            Toast.makeText(context, "Doing no action "+b.getString("3"), 0).show();
             clipboard.setPrimaryClip(clip);
 
 

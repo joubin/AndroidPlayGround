@@ -100,8 +100,6 @@ public class MainActivity extends Activity {
                 Intent yesReceive = new Intent();
                 Bundle yesBundle = new Bundle();
                 yesBundle.putString("1",clickedCar.getMake());
-                yesBundle.putString("2",clickedCar.getCondition());
-
                 yesReceive.putExtras(yesBundle);
                 yesReceive.setAction(YES_ACTION);
                 PendingIntent pendingIntentYes = PendingIntent.getBroadcast(MainActivity.this, 12345, yesReceive, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -111,7 +109,6 @@ public class MainActivity extends Activity {
                 Intent maybeReceive = new Intent();
                 Bundle maybeBundle = new Bundle();
                 maybeBundle.putString("2",clickedCar.getCondition());
-                Toast.makeText(getApplicationContext(), clickedCar.getCondition(), 0).show();
                 maybeReceive.putExtras(maybeBundle);
                 maybeReceive.setAction(MAYBE_ACTION);
                 PendingIntent pendingIntentMaybe = PendingIntent.getBroadcast(MainActivity.this, 12345, maybeReceive, PendingIntent.FLAG_UPDATE_CURRENT);
