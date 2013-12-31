@@ -128,12 +128,12 @@ public class MainActivity extends Activity {
 // the addAction re-use the same intent to keep the example short
 
                 Notification n  = new Notification.Builder(getApplicationContext())
-                        .setContentTitle("New mail from " + "test@gmail.com")
-                        .setContentText("Subject")
-                        .setSmallIcon(R.drawable.bullets)
+                        .setContentTitle("User information from " + clickedCar.getMake())
+                        .setContentText("Click me to clear this info")
+                        .setSmallIcon(clickedCar.getIconID())
 
                         .addAction(R.drawable.user, "user", pendingIntentYes)
-                        .addAction(R.drawable.star3, "pass", pendingIntentNo)
+                        .addAction(R.drawable.eye, "pass", pendingIntentNo)
                         .addAction(R.drawable.history, "clear", pendingIntentMaybe)
                         .build();
 
@@ -166,6 +166,37 @@ public class MainActivity extends Activity {
         myCars.add(new Car("Honda", "Good", 1999, R.drawable.m1911));
         myCars.add(new Car("Ford", "Good", 1999, R.drawable.bullets));
         myCars.add(new Car("Subaru", "Very Good", 2010, R.drawable.telescope));
+        myCars.add(new Car("Twitter", "joubin.j@gmail.com", 1999, R.drawable.bullets));
+        myCars.add(new Car("Subaru", "Very Good", 2010, R.drawable.telescope));
+        myCars.add(new Car("Toyota", "Good", 1999, R.drawable.camera));
+        myCars.add(new Car("Honda", "Good", 1999, R.drawable.m1911));
+        myCars.add(new Car("Ford", "Good", 1999, R.drawable.bullets));
+        myCars.add(new Car("Subaru", "Very Good", 2010, R.drawable.telescope));
+        myCars.add(new Car("Twitter", "joubin.j@gmail.com", 1999, R.drawable.bullets));
+        myCars.add(new Car("Subaru", "Very Good", 2010, R.drawable.telescope));
+        myCars.add(new Car("Toyota", "Good", 1999, R.drawable.camera));
+        myCars.add(new Car("Honda", "Good", 1999, R.drawable.m1911));
+        myCars.add(new Car("Ford", "Good", 1999, R.drawable.bullets));
+        myCars.add(new Car("Subaru", "Very Good", 2010, R.drawable.telescope));
+        myCars.add(new Car("Twitter", "joubin.j@gmail.com", 1999, R.drawable.bullets));
+        myCars.add(new Car("Subaru", "Very Good", 2010, R.drawable.telescope));
+        myCars.add(new Car("Toyota", "Good", 1999, R.drawable.camera));
+        myCars.add(new Car("Honda", "Good", 1999, R.drawable.m1911));
+        myCars.add(new Car("Ford", "Good", 1999, R.drawable.bullets));
+        myCars.add(new Car("Subaru", "Very Good", 2010, R.drawable.telescope));
+        myCars.add(new Car("Twitter", "joubin.j@gmail.com", 1999, R.drawable.bullets));
+        myCars.add(new Car("Subaru", "Very Good", 2010, R.drawable.telescope));
+        myCars.add(new Car("Toyota", "Good", 1999, R.drawable.camera));
+        myCars.add(new Car("Honda", "Good", 1999, R.drawable.m1911));
+        myCars.add(new Car("Ford", "Good", 1999, R.drawable.bullets));
+        myCars.add(new Car("Subaru", "Very Good", 2010, R.drawable.telescope));
+        myCars.add(new Car("Twitter", "joubin.j@gmail.com", 1999, R.drawable.bullets));
+        myCars.add(new Car("Subaru", "Very Good", 2010, R.drawable.telescope));
+        myCars.add(new Car("Toyota", "Good", 1999, R.drawable.camera));
+        myCars.add(new Car("Honda", "Good", 1999, R.drawable.m1911));
+        myCars.add(new Car("Ford", "Good", 1999, R.drawable.bullets));
+        myCars.add(new Car("Subaru", "Very Good", 2010, R.drawable.telescope));
+
 
         Collections.sort(myCars, new Comparator<Car>() {
             @Override
